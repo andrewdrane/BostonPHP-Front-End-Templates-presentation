@@ -35,7 +35,7 @@ class Controller {
     }
     
     function index() {
-        
+
     }
     
     
@@ -47,13 +47,13 @@ class Controller {
 
 //Static class for rendering presentation views
 class Renderer {
+    //Contains an array of all the templates we are using
     public $templates = array();
     public $template_data = array( 'content' => array() );
     
     function render( $template, $data, $title = 'Templates' ) {
-        //temporary
-        $this->templates['code_layout'] = file_get_contents( 'templates/code_layout.mustache' );
-        
+        //get all the available templates. Not super efficient, but works in a pinch!
+        $this->loadTemplates();
         
         $M = new Mustache();
         $this->template_data['title'] = $title;
@@ -70,7 +70,31 @@ class Renderer {
     
     
     private function loadTemplates(){
-        //load up all templates in the directory
+        
+        if ($handle = opendir('templates')) {
+
+            /* loop through each file. */
+            while (false !== ($entry = readdir($handle))) {
+                
+                //skip non .mustache files
+                if( stristr( $entry, '.mustache' ) === false ) {
+                    continue;
+                    
+                }
+                
+                //Template name is the filename without the extension
+                $template_name = str_replace('.mustache', '', $entry );
+                //if name like .mustache
+                $this->templates[$template_name] = file_get_contents( 'templates/' . $entry );
+                
+                
+            }
+
+            closedir($handle);
+            
+        }
+        
+        
     }
 }
 

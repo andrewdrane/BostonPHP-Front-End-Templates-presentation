@@ -5,7 +5,17 @@
     <title>{{title}}</title>
     
     <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
-    {{scripts}}
+    <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
+    <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/mustache/mustache.js"></script>
+    <script src="js/chili/src/chili-2.2.js"></script>
+    <script src="js/app.js"></script>
+    
+    
+    
+    {{{scripts}}} <!-- If there are additional scripts! -->
 </head>
 
 <body>
@@ -15,7 +25,9 @@
 <!-- BEGIN HEADER -->
     <div id="header_container">
         <div id="header">
-
+            {{#links}}
+                <a href="?url={{url}}">{{title}}</a>
+            {{/links}}
         </div>
     </div>
 <!-- END HEADER -->

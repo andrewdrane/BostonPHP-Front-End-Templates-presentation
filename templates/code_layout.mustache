@@ -1,8 +1,32 @@
+<script>
+    var code_layout_template = '{{{template_code}}}'; //make sure you have escaped the quotes
+    var code_layout_json = {{{data}}};
+</script>
+
+{{#headline}}
+<h2>{{headline}}</h2>
+{{/headline}}
+
+{{#subhead}}
+<h3>{{subhead}}</h3>
+{{/subhead}}
+
 <div class="row">
 
 <div class="span4">
 <pre>{{template_code}}</pre>
 </div>
-
+    
+<div class="span4">
+<pre>{{data}}</pre>
+</div>
+    
+<div class="span4">
+    <h2>Result</h2>
+    <a href="#" id ="render-template"></a>
+    <div id="result">
+        &nbsp;
+    </div>
+</div>
 
 </div>
