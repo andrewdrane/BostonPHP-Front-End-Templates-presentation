@@ -5004,45 +5004,68 @@ a.label:hover, a.badge:hover {
   visibility: hidden;
 }
 
-/* line 10, ../sass/screen.scss */
+@font-face {
+  font-family: 'Stardos Stencil';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Stardos Stencil Regular"), local("StardosStencil-Regular"), url("../../webfonts/StardosStencil.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Allerta Stencil';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Allerta Stencil Regular"), local("AllertaStencil-Regular"), url("../../webfonts/AllertaStencil-Regular.woff") format("woff");
+}
+
+/* line 15, ../sass/partials/_typography.scss */
 body, pre, p {
   font-size: 24px;
   line-height: 36px;
 }
 
-/* line 15, ../sass/screen.scss */
+/* line 20, ../sass/partials/_typography.scss */
+h1, h2 {
+  font-family: 'Allerta Stencil' sans-serif;
+  font-weight: normal;
+}
+
+/* line 27, ../sass/partials/_typography.scss */
+h1 {
+  font-size: 72px;
+  line-height: 72px;
+}
+
+/* line 32, ../sass/partials/_typography.scss */
+h2 {
+  font-size: 40px;
+  line-height: 60px;
+}
+
+/* line 36, ../sass/partials/_typography.scss */
+h3 {
+  font-size: 36px;
+  line-height: 48px;
+}
+
+/* line 12, ../sass/screen.scss */
 #content {
   width: 940px;
   margin: 0px auto;
   clear: both;
 }
 
-/* line 22, ../sass/screen.scss */
+/* line 19, ../sass/screen.scss */
 #header {
   font-size: 12px;
   height: 50px;
 }
-/* line 26, ../sass/screen.scss */
+/* line 23, ../sass/screen.scss */
 #header ul {
   list-style-type: none;
 }
-/* line 28, ../sass/screen.scss */
+/* line 25, ../sass/screen.scss */
 #header ul li {
   float: left;
   padding: 1px 5px;
-}
-
-/* line 36, ../sass/screen.scss */
-h1 {
-  font-size: 48px;
-}
-
-/* line 39, ../sass/screen.scss */
-h2 {
-  font-size: 40px;
-}
-
-/* line 42, ../sass/screen.scss */
-h3 {
-  font-size: 36px;
 }

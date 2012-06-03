@@ -28,6 +28,7 @@ class Controller {
         if ( $_GET['url'] ) {
             //if function exists in route - call it
             call_user_func( array( $this, $_GET['url'] ) );
+            
         } else {
             $this->index();
         }
@@ -43,7 +44,10 @@ class Controller {
     
     
     function code_basic() {
-        $this->data['title'] = 'Basic rendering';
+        $this->data['headline'] = 'Basic rendering';
+        $this->data['subhead'] = 'Mapping data to a template';
+
+                
         $this->data['template_code'] = $this->getEscapedTemplate('basic');
         $this->data['template_display_code'] = $this->getTemplate('basic');
         $this->data['data'] = json_encode( array(
@@ -66,13 +70,35 @@ class Controller {
     //set variables etc.
     private function beforeRender(){
 //          array('url' => '', 'title' => ''),  
-        $this->R->template_data['links'] = array(
+        $links = array(
           array('url' => '', 'title' => 'Home'),  
           array('url' => 'code_basic', 'title' => 'Basic'),  
           array('url' => 'code_lists', 'title' => 'Lists'),  
           array('url' => 'code_sub_template', 'title' => 'Sub Template'),  
           array('url' => 'code_repeating', 'title' => 'repeating'),  
         );
+        
+        $this->R->template_data['links'] = $links;
+        
+
+        //next and previous links
+        foreach ($links as $key => $link ) {
+        
+            if ( $link['url'] == $_GET['url'] ) {
+                if( isset( $links[ $key+1 ] ) ) {
+                    $this->R->template_data['next'] = $links[ $key+1 ]['url'];
+                }
+                
+                if( isset( $links[ $key-1 ] ) ) {
+                    $this->R->template_data['prev'] = $links[ $key-1 ]['url'];
+                }
+                
+                break;
+            }
+
+        }
+
+
         
     }
     

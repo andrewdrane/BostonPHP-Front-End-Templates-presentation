@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'Stardos Stencil';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Stardos Stencil Regular'), local('StardosStencil-Regular'), url('../../webfonts/StardosStencil.woff') format('woff');
+}
+@font-face {
+  font-family: 'Allerta Stencil';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Allerta Stencil Regular'), local('AllertaStencil-Regular'), url('../../webfonts/AllertaStencil-Regular.woff') format('woff');
+}
+
+
+body, pre, p {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+h1, h2 {
+
+  font-family: 'Allerta Stencil' sans-serif;
+  font-weight: normal;
+
+}
+
+h1 {
+    font-size: 72px;
+    line-height: 72px;
+
+}
+h2{
+    font-size: 40px;
+    line-height: 60px;
+}
+h3{
+    font-size: 36px;
+    line-height: 48px;
+
+}

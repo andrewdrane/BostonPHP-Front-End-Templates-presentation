@@ -7,10 +7,7 @@
 
 //Make the font BIG
 
-body, pre, p {
-    font-size: 24px;
-    line-height: 36px;
-}
+
 
 #content {
     width: $gridRowWidth;
@@ -31,15 +28,5 @@ body, pre, p {
        }
     }
 
-}
-
-h1 {
-    font-size: 48px;
-}
-h2{
-    font-size: 40px;
-}
-h3{
-    font-size: 36px;
 }
 
