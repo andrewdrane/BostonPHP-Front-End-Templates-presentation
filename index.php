@@ -45,6 +45,7 @@ class Controller {
     function code_basic() {
         $this->data['title'] = 'Basic rendering';
         $this->data['template_code'] = $this->getEscapedTemplate('basic');
+        $this->data['template_display_code'] = $this->getTemplate('basic');
         $this->data['data'] = json_encode( array(
             'first_name' => 'Andrew',
             'last_name' => 'Drane'

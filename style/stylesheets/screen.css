@@ -5003,3 +5003,46 @@ a.label:hover, a.badge:hover {
 .invisible {
   visibility: hidden;
 }
+
+/* line 10, ../sass/screen.scss */
+body, pre, p {
+  font-size: 24px;
+  line-height: 36px;
+}
+
+/* line 15, ../sass/screen.scss */
+#content {
+  width: 940px;
+  margin: 0px auto;
+  clear: both;
+}
+
+/* line 22, ../sass/screen.scss */
+#header {
+  font-size: 12px;
+  height: 50px;
+}
+/* line 26, ../sass/screen.scss */
+#header ul {
+  list-style-type: none;
+}
+/* line 28, ../sass/screen.scss */
+#header ul li {
+  float: left;
+  padding: 1px 5px;
+}
+
+/* line 36, ../sass/screen.scss */
+h1 {
+  font-size: 48px;
+}
+
+/* line 39, ../sass/screen.scss */
+h2 {
+  font-size: 40px;
+}
+
+/* line 42, ../sass/screen.scss */
+h3 {
+  font-size: 36px;
+}

@@ -4,3 +4,42 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "partials/all";
+
+//Make the font BIG
+
+body, pre, p {
+    font-size: 24px;
+    line-height: 36px;
+}
+
+#content {
+    width: $gridRowWidth;
+    margin: 0px auto;
+    clear: both;
+
+}
+
+#header {
+    font-size: 12px;
+    height: 50px;
+
+    ul {
+       list-style-type: none;
+       li {
+         float: left;
+         padding: 1px 5px;
+       }
+    }
+
+}
+
+h1 {
+    font-size: 48px;
+}
+h2{
+    font-size: 40px;
+}
+h3{
+    font-size: 36px;
+}
+
