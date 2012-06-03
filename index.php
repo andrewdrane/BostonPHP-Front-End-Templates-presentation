@@ -18,20 +18,23 @@ class Controller {
     public $data = array();
     public $title = 'index';
     
-    
+    //setup the renderer
+    function __construct(){
+        $this->R = new Renderer();
+    }
     
     function route() {
-        $R = new Renderer();
         
         if ( $_GET['url'] ) {
             //if function exists in route - call it
+            call_user_func( array( $this, $_GET['url'] ) );
         } else {
             $this->index();
         }
 
         
         $this->beforeRender();
-        $R->render( $this->template, $this->data, $this->title );
+        $this->R->render( $this->template, $this->data, $this->title );
     }
     
     function index() {
@@ -39,9 +42,55 @@ class Controller {
     }
     
     
+    function code_basic() {
+        $this->data['title'] = 'Basic rendering';
+        $this->data['template_code'] = $this->getEscapedTemplate('basic');
+        $this->data['data'] = json_encode( array(
+            'first_name' => 'Andrew',
+            'last_name' => 'Drane'
+        ) );
+    }
+    
+    function code_lists() {
+    }
+    
+    function code_sub_template() {
+    }
+
+    function code_repeating() {
+    }
+
+
+    
     //set variables etc.
-    function beforeRender(){
+    private function beforeRender(){
+//          array('url' => '', 'title' => ''),  
+        $this->R->template_data['links'] = array(
+          array('url' => '', 'title' => 'Home'),  
+          array('url' => 'code_basic', 'title' => 'Basic'),  
+          array('url' => 'code_lists', 'title' => 'Lists'),  
+          array('url' => 'code_sub_template', 'title' => 'Sub Template'),  
+          array('url' => 'code_repeating', 'title' => 'repeating'),  
+        );
         
+    }
+    
+    //get any template that's been loaded
+    private function getTemplate( $template_name ){
+        if( isset( $this->R->templates[ $template_name ] ) ) {
+            return $this->R->templates[ $template_name ];
+        } else {
+            return null;
+        }
+    }
+    
+    //Escapes quotes and more from the templates.
+    private function getEscapedTemplate( $template_name ){
+        return str_replace( 
+                array("\n", '"', "'"), 
+                array("\\n\\\n", '\"', "\'"), 
+                $this->getTemplate( $template_name ) 
+                );
     }
 }
 
@@ -51,9 +100,13 @@ class Renderer {
     public $templates = array();
     public $template_data = array( 'content' => array() );
     
-    function render( $template, $data, $title = 'Templates' ) {
+    
+    function __construct(){
         //get all the available templates. Not super efficient, but works in a pinch!
         $this->loadTemplates();
+    }
+    
+    function render( $template, $data, $title = 'Templates' ) {
         
         $M = new Mustache();
         $this->template_data['title'] = $title;
