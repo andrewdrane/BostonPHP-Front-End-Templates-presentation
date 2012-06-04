@@ -5020,8 +5020,8 @@ a.label:hover, a.badge:hover {
 
 /* line 15, ../sass/partials/_typography.scss */
 body, pre, p {
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 /* line 20, ../sass/partials/_typography.scss */

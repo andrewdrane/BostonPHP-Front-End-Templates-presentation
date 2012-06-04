@@ -43,9 +43,11 @@ var gotten = '';
             $('#content').html( newHTML );
             
             //Render the Next and Previous links to the end of the nav bar
-            var navHTML = Mustache.render( all_templates['_next_prev'], data['template']['nav'], all_templates);
+            $('#prev, #next').remove(); //get rid of the existing ones
             
-            $('nav').append( navHTML );
+            var navHTML = Mustache.render( all_templates['_next_prev'], data['template'], all_templates);
+            
+            $('#nav').append( navHTML );
         });
         
     }

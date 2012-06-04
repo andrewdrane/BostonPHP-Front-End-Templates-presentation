@@ -14,7 +14,7 @@ class Presentation {
  * 
  */
 class Controller {
-    public $template = 'code_layout';
+    public $template = 'title_slide';
     public $data = array();
     public $title = 'index';
     
@@ -25,7 +25,7 @@ class Controller {
     
     function route() {
         
-        if ( $_GET['url'] ) {
+        if ( $_GET['url'] && method_exists( $this, $_GET['url'] ) ) {
             //if function exists in route - call it
             call_user_func( array( $this, $_GET['url'] ) );
             
@@ -51,24 +51,37 @@ class Controller {
           
     }
     
+    function intro1() {
+        $this->template = 'title_slide';
+        $this->data['headline'] = 'What is it and why';
+        $this->data['subhead'] = 'Logic-less templates that can be rendered on the browser, or the back end';
+        
+        
+        $this->data['extra'] = array();
+        $this->data['extra'][] = '&bull; Allows your server to send simple JSON rather than rendered HTML';
+        $this->data['extra'][] = '&bull; Cache views in a javascript file';
+        $this->data['extra'][] = '&bull; Separating logic from your code is more portable';
+    }
+    
     
     function resources() {
         $this->template = 'title_slide';
         $this->data['headline'] = 'Additional Resources';
-        $this->data['subhead'] = 'Ke';
+        $this->data['subhead'] = 'Keep it simple';
         
         
         $this->data['extra'] = array();
         $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
         $this->data['extra'][] = 'Backbone JS: <a href="http://backbonejs.org/">http://backbonejs.org/</a>';
-        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
-        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Google WebFonts: <a href="http://www.google.com/webfonts">http://www.google.com/webfonts</a>';
+        $this->data['extra'][] = 'Twitter Bootstrap <a href="http://twitter.github.com/bootstrap/index.html">http://twitter.github.com/bootstrap/index.html</a>';
         $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
           
     }
     
     
     function code_basic() {
+        $this->template = 'code_layout';
         $this->data['headline'] = 'Basic rendering';
         $this->data['subhead'] = 'Mapping data to a template';
 
@@ -82,6 +95,44 @@ class Controller {
     }
     
     function code_lists() {
+        $this->template = 'code_layout';
+        $this->data['headline'] = 'Rendering a list';
+        $this->data['subhead'] = 'and conditionals too!';
+
+                
+        $this->data['template_code'] = $this->getEscapedTemplate('lists');
+        $this->data['template_display_code'] = $this->getTemplate('lists');
+        $this->data['data'] = json_encode( array(
+            'first_name' => 'Andrew',
+            'last_name' => 'Drane',
+            'colleagues' => array(
+                array(
+                    'first_name' => 'Michael',
+                    'last_name' => 'Bourque',
+                    'presenting' => false,
+                ),
+                array(
+                    'first_name' => 'Matt',
+                    'last_name' => 'Murphy',
+                    'presenting' => true,
+                ),
+                array(
+                    'first_name' => 'Gene',
+                    'last_name' => 'Babon',
+                    'presenting' => true,
+                ),
+                array(
+                    'first_name' => 'Heather',
+                    'last_name' => 'O\'Neill',
+                    'presenting' => true,
+                ),
+                array(
+                    'first_name' => 'Devan',
+                    'last_name' => 'Calabrez',
+                    'presenting' => false,
+                )
+            )
+        ) );
     }
     
     function code_sub_template() {
@@ -97,10 +148,13 @@ class Controller {
 //          array('url' => '', 'title' => ''),  
         $links = array(
           array('url' => '', 'title' => 'Home'),  
+          array('url' => 'intro1', 'title' => 'Intro'),  
           array('url' => 'code_basic', 'title' => 'Basic'),  
           array('url' => 'code_lists', 'title' => 'Lists'),  
           array('url' => 'code_sub_template', 'title' => 'Sub Template'),  
-          array('url' => 'code_repeating', 'title' => 'repeating'),  
+          array('url' => 'code_repeating', 'title' => 'Repeating'),  
+          array('url' => 'resources', 'title' => 'Resources'),  
+            
         );
         
         $this->R->template_data['links'] = $links;
