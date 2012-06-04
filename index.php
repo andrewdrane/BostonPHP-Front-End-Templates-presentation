@@ -75,7 +75,7 @@ class Controller {
         $this->data['extra'][] = 'Backbone JS: <a href="http://backbonejs.org/">http://backbonejs.org/</a>';
         $this->data['extra'][] = 'Google WebFonts: <a href="http://www.google.com/webfonts">http://www.google.com/webfonts</a>';
         $this->data['extra'][] = 'Twitter Bootstrap <a href="http://twitter.github.com/bootstrap/index.html">http://twitter.github.com/bootstrap/index.html</a>';
-        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'jQuery: <a href="http://jquery.com/">http://jquery.com/</a>';
           
     }
     
