@@ -5,13 +5,13 @@
     <title>{{title}}</title>
     
     <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
-    <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
-    <link rel="stylesheet" type="text/css" href="style/stylesheets/screen.css" />
     
     <script src="js/jquery.js"></script>
     <script src="js/mustache/mustache.js"></script>
     <script src="js/chili/src/chili-2.2.js"></script>
+    <script src="js/chili/src/recipes.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/templates.js"></script>
     
     
     
@@ -22,30 +22,23 @@
     
     
     <div id="container">
-        <div id="content">
     
             <!-- BEGIN HEADER -->
             <div id="header_container">
                 <div id="header">
-                    <ul>
-
+                    <ul id="nav">
                     {{#links}}
                         <li><a href="?url={{url}}">{{title}}</a></li>
                     {{/links}}
                     
-                    {{#prev}}
-                        <li><a href="?url={{prev}}">Prev</a></li>
-                    {{/prev}}
-                    
-                    {{#next}}
-                        <li><a href="?url={{next}}">Next</a></li>
-                    {{/next}}
+                    {{>_next_prev}}
                     </ul>
                 </div>
             </div>
             <!-- END HEADER -->
   
             <!-- make sure content isn't excaped! -->
+        <div id="content">
             {{{content}}}
             
         </div>

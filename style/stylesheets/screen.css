@@ -5028,6 +5028,7 @@ body, pre, p {
 h1, h2 {
   font-family: 'Allerta Stencil' sans-serif;
   font-weight: normal;
+  text-align: center;
 }
 
 /* line 27, ../sass/partials/_typography.scss */
@@ -5036,20 +5037,27 @@ h1 {
   line-height: 72px;
 }
 
-/* line 32, ../sass/partials/_typography.scss */
+/* line 33, ../sass/partials/_typography.scss */
 h2 {
-  font-size: 40px;
-  line-height: 60px;
+  font-size: 60px;
+  line-height: 72px;
 }
 
-/* line 36, ../sass/partials/_typography.scss */
+/* line 38, ../sass/partials/_typography.scss */
 h3 {
   font-size: 36px;
   line-height: 48px;
+  text-align: center;
+}
+
+/* line 44, ../sass/partials/_typography.scss */
+h4 {
+  font-size: 30px;
+  line-height: 40px;
 }
 
 /* line 12, ../sass/screen.scss */
-#content {
+#content, #header_container {
   width: 940px;
   margin: 0px auto;
   clear: both;

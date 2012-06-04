@@ -9,8 +9,8 @@
 
 
 
-#content {
-    width: $gridRowWidth;
+#content, #header_container {
+    width: $gridRowWidth; 
     margin: 0px auto;
     clear: both;
 

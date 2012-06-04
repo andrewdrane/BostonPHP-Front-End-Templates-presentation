@@ -39,7 +39,32 @@ class Controller {
     }
     
     function index() {
-
+        $this->template = 'title_slide';
+        $this->data['headline'] = 'Client Side Templates';
+        $this->data['subhead'] = 'Free your views to be rendered anywhere';
+        
+        
+        $this->data['extra'] = array();
+        $this->data['extra'][] = 'Featuring Mustache: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Presentation code on GitHub: <a href="https://github.com/andrewdrane/BostonPHP-Front-End-Templates-presentation">https://github.com/andrewdrane/BostonPHP-Front-End-Templates-presentation</a>';
+        $this->data['extra'][] = 'Slides online: <a href="http://adrane.com">http://adrane.com</a>';
+          
+    }
+    
+    
+    function resources() {
+        $this->template = 'title_slide';
+        $this->data['headline'] = 'Additional Resources';
+        $this->data['subhead'] = 'Ke';
+        
+        
+        $this->data['extra'] = array();
+        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Backbone JS: <a href="http://backbonejs.org/">http://backbonejs.org/</a>';
+        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+          
     }
     
     
@@ -82,15 +107,17 @@ class Controller {
         
 
         //next and previous links
+        $this->R->template_data['nav'] = array();
+        
         foreach ($links as $key => $link ) {
         
             if ( $link['url'] == $_GET['url'] ) {
                 if( isset( $links[ $key+1 ] ) ) {
-                    $this->R->template_data['next'] = $links[ $key+1 ]['url'];
+                    $this->R->template_data['nav']['next'] = $links[ $key+1 ]['url'];
                 }
                 
                 if( isset( $links[ $key-1 ] ) ) {
-                    $this->R->template_data['prev'] = $links[ $key-1 ]['url'];
+                    $this->R->template_data['nav']['prev'] = $links[ $key-1 ]['url'];
                 }
                 
                 break;
@@ -138,14 +165,21 @@ class Renderer {
         $M = new Mustache();
         $this->template_data['title'] = $title;
         
-        //Now, render the desired template into a variable
-        $this->template_data['content'] = $M->render( $this->templates[ $template ], $data, $this->templates );
-        
-        //Render the main title
-        $main_template = file_get_contents( 'templates/main.mustache' );
-        
-        echo $M->render( $main_template, $this->template_data, $this->templates );
+        //Detect AJAX requests. Send just data if an ajax request!
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $data['template']['name'] = $template;
+            $data['template']['title'] = $title;
+            $data['template']['nav'] = $this->template_data['nav']; //Send the next and previous data, in case we need it
+            echo json_encode( $data );
+        } else {
+            //Render the desired template into a variable
+            $this->template_data['content'] = $M->render( $this->templates[ $template ], $data, $this->templates );
+            
+             //Render the main title
+            $main_template = file_get_contents( 'templates/main.mustache' );
 
+            echo $M->render( $main_template, $this->template_data, $this->templates );
+        }
     }
     
     
