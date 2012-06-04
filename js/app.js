@@ -16,7 +16,16 @@ $( function(){
         $('#result').html( 
             Mustache.render( code_layout_template, code_layout_json, all_templates )
         );
-    })
+    });
+    
+    
+    //Setup the next and previous links as ajax
+    $(document).on( 'click', '#next a, #prev a', function( event ) {
+        event.preventDefault();
+        console.log( $(this).attr('data-template') + $(this).html() );
+        //Use the data templates for the next and previous buttons. Use window.location.pathname because I'm using confusing URLs here
+        ajaxLoad( $(this).attr('href'), $(this).attr('data-template') )
+    });
     
     
     

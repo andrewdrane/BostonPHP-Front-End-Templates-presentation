@@ -159,11 +159,7 @@ class Controller {
         $this->data['data'] = json_encode($this->colleagueData() );
     }
     
-    function code_sub_template() {
-    }
 
-    function code_repeating() {
-    }
 
 
     
@@ -172,14 +168,12 @@ class Controller {
 //          array('url' => '', 'title' => ''),  
         $links = array(
           array('url' => '', 'title' => 'Home'),  
-          array('url' => 'intro1', 'title' => 'Intro'),  
-          array('url' => 'code_basic', 'title' => 'Basic'),  
-          array('url' => 'code_escaping', 'title' => 'Escaping'),  
-          array('url' => 'code_lists', 'title' => 'Lists'),  
-          array('url' => 'code_partials', 'title' => 'Partials'),  
-          array('url' => 'code_sub_template', 'title' => 'Sub Template'),  
-          array('url' => 'code_repeating', 'title' => 'Repeating'),  
-          array('url' => 'resources', 'title' => 'Resources'),  
+          array('url' => 'intro1', 'title' => 'Intro', 'data_template' => 'title_slide'),  
+          array('url' => 'code_basic', 'title' => 'Basic', 'data_template' => 'code_layout'),  
+          array('url' => 'code_escaping', 'title' => 'Escaping', 'data_template' => 'code_layout'),  
+          array('url' => 'code_lists', 'title' => 'Lists', 'data_template' => 'code_layout'),  
+          array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),  
+          array('url' => 'resources', 'title' => 'Resources', 'data_template' => 'title_slide'),  
             
         );
         
@@ -194,10 +188,12 @@ class Controller {
             if ( $link['url'] == $_GET['url'] ) {
                 if( isset( $links[ $key+1 ] ) ) {
                     $this->R->template_data['nav']['next'] = $links[ $key+1 ]['url'];
+                    $this->R->template_data['nav']['next_data_template'] = $links[ $key+1 ]['data_template'];
                 }
                 
                 if( isset( $links[ $key-1 ] ) ) {
                     $this->R->template_data['nav']['prev'] = $links[ $key-1 ]['url'];
+                    $this->R->template_data['nav']['prev_data_template'] = $links[ $key-1 ]['data_template'];
                 }
                 
                 break;
