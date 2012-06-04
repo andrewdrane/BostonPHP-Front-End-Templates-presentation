@@ -74,3 +74,7 @@ function getBetween( tag, data ) {
     
     return data.substr( start, end );
 }
+
+function formatJSON(){
+    $('.js').html( $('.js').html().replace(/(,|\[)/g, '$1\n') );
+}
