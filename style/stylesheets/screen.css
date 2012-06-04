@@ -2725,7 +2725,7 @@ table .span24 {
 }
 
 /* line 4, ../sass/sass-twitter-bootstrap/lib/_wells.scss */
-.well {
+.well, .colleague {
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;
@@ -2740,7 +2740,7 @@ table .span24 {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 /* line 13, ../sass/sass-twitter-bootstrap/lib/_wells.scss */
-.well blockquote {
+.well blockquote, .colleague blockquote {
   border-color: #ddd;
   border-color: rgba(0, 0, 0, 0.15);
 }
@@ -5020,8 +5020,8 @@ a.label:hover, a.badge:hover {
 
 /* line 15, ../sass/partials/_typography.scss */
 body, pre, p {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: 26px;
 }
 
 /* line 20, ../sass/partials/_typography.scss */
@@ -5076,4 +5076,17 @@ h4 {
 #header ul li {
   float: left;
   padding: 1px 5px;
+}
+
+/*
+    presentation specific stuff
+*/
+/* line 39, ../sass/screen.scss */
+.colleague .name {
+  font-weight: bold;
+}
+
+/* line 43, ../sass/screen.scss */
+#me {
+  font-weight: bold;
 }

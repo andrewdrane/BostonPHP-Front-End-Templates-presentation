@@ -30,3 +30,16 @@
 
 }
 
+/*
+    presentation specific stuff
+*/
+
+.colleague {
+    @extend .well;
+    .name {
+        font-weight: bold;
+    }
+}
+#me {
+        font-weight: bold;
+}

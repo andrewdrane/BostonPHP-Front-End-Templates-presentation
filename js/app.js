@@ -16,6 +16,9 @@ $( function(){
         $('#result').html( 
             Mustache.render( code_layout_template, code_layout_json, all_templates )
         );
+
+        //get rid of the link
+        $(this).remove();
     });
     
     
