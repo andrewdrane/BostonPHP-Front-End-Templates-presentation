@@ -94,15 +94,9 @@ class Controller {
         ) );
     }
     
-    function code_lists() {
-        $this->template = 'code_layout';
-        $this->data['headline'] = 'Rendering a list';
-        $this->data['subhead'] = 'and conditionals too!';
-
-                
-        $this->data['template_code'] = $this->getEscapedTemplate('lists');
-        $this->data['template_display_code'] = $this->getTemplate('lists');
-        $this->data['data'] = json_encode( array(
+    //simple re-use
+    private function colleagueData(){
+        return array(
             'first_name' => 'Andrew',
             'last_name' => 'Drane',
             'colleagues' => array(
@@ -132,7 +126,37 @@ class Controller {
                     'presenting' => false,
                 )
             )
-        ) );
+        );
+    }
+    
+    function code_escaping() {
+        $this->template = 'code_layout';
+        $this->data['headline'] = 'Escaping';
+        $this->data['subhead'] = 'For your protection';
+
+        $this->data['template_code'] = $this->getEscapedTemplate('escaping');
+        $this->data['template_display_code'] = $this->getTemplate('escaping');
+        $this->data['data'] = json_encode( array('data' => '<u>Mustache</u> is <strong>Awesome</strong>' ) );
+    }
+    
+    function code_lists() {
+        $this->template = 'code_layout';
+        $this->data['headline'] = 'Rendering a list';
+        $this->data['subhead'] = 'and conditionals too!';
+
+        $this->data['template_code'] = $this->getEscapedTemplate('lists');
+        $this->data['template_display_code'] = $this->getTemplate('lists');
+        $this->data['data'] = json_encode($this->colleagueData() );
+    }
+    
+    function code_partials() {
+        $this->template = 'code_layout';
+        $this->data['headline'] = 'Rendering a list';
+        $this->data['subhead'] = 'and conditionals too!';
+
+        $this->data['template_code'] = $this->getEscapedTemplate('partials');
+        $this->data['template_display_code'] = $this->getTemplate('partials') . "\n\n----\n_colleague.mustache\n\n" . $this->getTemplate('_colleague');
+        $this->data['data'] = json_encode($this->colleagueData() );
     }
     
     function code_sub_template() {
@@ -150,7 +174,9 @@ class Controller {
           array('url' => '', 'title' => 'Home'),  
           array('url' => 'intro1', 'title' => 'Intro'),  
           array('url' => 'code_basic', 'title' => 'Basic'),  
+          array('url' => 'code_escaping', 'title' => 'Escaping'),  
           array('url' => 'code_lists', 'title' => 'Lists'),  
+          array('url' => 'code_partials', 'title' => 'Partials'),  
           array('url' => 'code_sub_template', 'title' => 'Sub Template'),  
           array('url' => 'code_repeating', 'title' => 'Repeating'),  
           array('url' => 'resources', 'title' => 'Resources'),  

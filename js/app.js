@@ -9,12 +9,12 @@ $( function(){
     /** Render mustache templates on the page
      * 
      */
-    $('#render-template').on('click', function( event ) {
+    $(document).on( 'click', '#render-template', function( event ) {
         event.preventDefault();
         
         //Render the result into the appropriate location
         $('#result').html( 
-            Mustache.render( code_layout_template, code_layout_json )
+            Mustache.render( code_layout_template, code_layout_json, all_templates )
         );
     })
     
@@ -32,7 +32,6 @@ var gotten = '';
      * Render the template to the main content. Render next and previous and append to the end of the nav bar
      */
     function ajaxLoad( url, template_name ){
-        alert('hi');
         
         //Get the data using an AJAX request. getJSON will ensure we get JSON data
         $.getJSON( url, function ( data ) {
