@@ -151,8 +151,8 @@ class Controller {
     
     function code_partials() {
         $this->template = 'code_layout';
-        $this->data['headline'] = 'Rendering a list';
-        $this->data['subhead'] = 'and conditionals too!';
+        $this->data['headline'] = 'Using partials';
+        $this->data['subhead'] = 'For better code re-use';
 
         $this->data['template_code'] = $this->getEscapedTemplate('partials');
         $this->data['template_display_code'] = $this->getTemplate('partials') . "\n\n----\n_colleague.mustache\n\n" . $this->getTemplate('_colleague');
