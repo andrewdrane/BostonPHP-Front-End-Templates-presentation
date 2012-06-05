@@ -25,7 +25,6 @@ $( function(){
     //Setup the next and previous links as ajax
     $(document).on( 'click', '#next a, #prev a', function( event ) {
         event.preventDefault();
-        console.log( $(this).attr('data-template') + $(this).html() );
         //Use the data templates for the next and previous buttons. Use window.location.pathname because I'm using confusing URLs here
         ajaxLoad( $(this).attr('href'), $(this).attr('data-template') )
     });
@@ -40,30 +39,40 @@ $( function(){
 var gotten = '';
 //comments that are just a number are for displaying code
 //1
-    /** Load a request by AJAX. Loads the next and previous links as well
-     * Render the template to the main content. Render next and previous and append to the end of the nav bar
-     */
-    function ajaxLoad( url, template_name ){
-        
-        //Get the data using an AJAX request. getJSON will ensure we get JSON data
-        $.getJSON( url, function ( data ) {
-            //Render the HTML from the newly gotten data
-            var newHTML = Mustache.render( all_templates[template_name], data, all_templates);
-            gotten = data;
-            //update the main content area
-            $('#content').html( newHTML );
-            
-            //Render the Next and Previous links to the end of the nav bar
-            $('#prev, #next').remove(); //get rid of the existing ones
-            
-            var navHTML = Mustache.render( all_templates['_next_prev'], data['template'], all_templates);
-            
-            $('#nav').append( navHTML );
-            
-            prettyPrint(); //make code blocks look nice!
-        });
-        
-    }
+/** Load a request by AJAX. Loads the next and previous links as well
+ * Render the template to the main content. Render next and previous and append to the end of the nav bar
+ */
+function ajaxLoad( url, template_name ){
+
+    // Get the data using an AJAX request. 
+    // getJSON will ensure we get JSON data
+    $.getJSON( url, function ( data ) {
+        //Render the HTML from the newly gotten data
+        var newHTML = Mustache.render( 
+            all_templates[template_name], 
+            data, 
+            all_templates
+        );
+
+        //update the main content area
+        $('#content').html( newHTML );
+
+        //Render the Next and Previous links to the end of the nav bar
+        //get rid of the existing ones
+        $('#prev, #next').remove(); 
+
+        var navHTML = Mustache.render( 
+            all_templates['_next_prev'], 
+            data['template'], 
+            all_templates
+        );
+
+        $('#nav').append( navHTML );
+
+        prettyPrint(); //make code blocks look nice!
+    });
+
+}
 //1
 
 //helper functions to get examples of things

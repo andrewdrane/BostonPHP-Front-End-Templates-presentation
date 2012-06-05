@@ -1,13 +1,16 @@
-<script type="text/javascript">
-    //Get a marked section of a javascript file (usually app.js)
-    //Global Variables! Bad practice, don't do this in real production code :p
-    file_url = "{{file_url}}";
-    file_token = "{{file_token}}";
-    
-    loadUpScript();
-    
-    
-</script>
+{{^injected_code}}
+    <script type="text/javascript">
+
+            //Get a marked section of a javascript file (usually app.js)
+            //Global Variables! Bad practice, don't do this in real production code :p
+            file_url = "{{file_url}}";
+            file_token = "{{file_token}}";
+
+            loadUpScript();
+
+
+    </script>
+{{/injected_code}}
 
 {{#headline}}
 <h2>{{headline}}</h2>
@@ -21,7 +24,7 @@
 
     <div class="tab-content">
         <div class="span12" id="template">
-            <pre class="js prettyprint" id="function_example">Loading...<pre>
+            <pre class="js prettyprint linenums" id="function_example">{{^injected_code}}Loading...{{/injected_code}}{{#injected_code}}{{injected_code}}{{/injected_code}}<pre>
         </div>
 
     </div>

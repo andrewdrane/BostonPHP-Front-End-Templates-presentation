@@ -174,18 +174,51 @@ class Controller {
     
     
     function advanced1() {
+        $this->template = 'title_slide';
+        $this->data['headline'] = 'Some more advanced';
+        $this->data['subhead'] = 'You really need to add all the logic!';
         //dealing with coma separated lists lists, uls etc. has colleague
     }
 
     function advanced2() {
         //Push State, 
         //History
+        //Ajax detecting
+        $this->template = 'title_slide';
+        $this->data['mega'] = 'J';
+    }
+    
+    function detecting() {
+        $this->template = 'js_example';
+        $this->data['headline'] = 'SEO practices';
+        $this->data['subhead'] = 'When you need to choose AJAX v.s. regular HTTP';
+        $this->data['injected_code'] = '$M = new Mustache();
+$this->template_data[\'title\'] = $title;
+
+//Detect AJAX requests. Send just data if an ajax request!
+if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) && strtolower($_SERVER[\'HTTP_X_REQUESTED_WITH\']) == \'xmlhttprequest\') {
+    $data[\'template\'][\'name\'] = $template; //which temlate to use
+    $data[\'template\'][\'title\'] = $title; 
+    //etc...
+    echo json_encode( $data );
+} else {
+    //Render the desired template into a variable
+    $this->template_data[\'content\'] = $M->render( $this->templates[ $template ], $data, $this->templates );
+
+     //Render the main title
+    $main_template = file_get_contents( \'templates/main.mustache\' );
+
+    echo $M->render( $main_template, $this->template_data, $this->templates );
+}';
+        
+        
+        //dealing with coma separated lists lists, uls etc. has colleague
     }
     
     function js1() {
         $this->template = 'js_example';
-        $this->data['headline'] = 'Example loading with JSON';
-        //$this->data['subhead'] = '';
+        $this->data['headline'] = 'Example';
+        $this->data['subhead'] = 'How this presentation works';
         $this->data['file_url'] = 'js/app.js';
         $this->data['file_token'] = '1';
         
@@ -204,17 +237,19 @@ class Controller {
         $links = array(
           array('url' => '', 'title' => 'Home'),  
           array('url' => 'intro1', 'title' => 'Intro', 'data_template' => 'title_slide'),  
-          array('url' => 'intro2', 'title' => 'Examples', 'data_template' => 'title_slide'),  
+          array('url' => 'examples', 'title' => 'Examples', 'data_template' => 'title_slide'),  
           array('url' => 'code_basic', 'title' => 'Basic', 'data_template' => 'code_layout'),  
           array('url' => 'code_escaping', 'title' => 'Escaping', 'data_template' => 'code_layout'),  
           array('url' => 'code_lists', 'title' => 'Lists', 'data_template' => 'code_layout'),  
           array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),
           array('url' => 'advanced1', 'title' => 'Resources', 'data_template' => 'code_layout'),  
+          array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'title_slide'),  
+          array('url' => 'detecting', 'title' => 'Detecting', 'data_template' => 'js_example'),  
           array('url' => 'js1', 'title' => 'AJAXing', 'data_template' => 'js_example'),  
             //Show script example of how the next/previous is working
             //explain push state
           array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'code_layout'),  
-          array('url' => 'thanks', 'title' => 'Resources', 'data_template' => 'title_slide')  
+          array('url' => 'thanks', 'title' => 'Thanks', 'data_template' => 'title_slide')  
             
         );
         
