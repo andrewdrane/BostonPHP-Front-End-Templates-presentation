@@ -71,8 +71,10 @@ class Controller {
         
         
         $this->data['extra'] = array();
+        $this->data['extra'][] = '&bull; <a href="http://backbonejs.org/#examples">BackBone Framework</a>';
         $this->data['extra'][] = '&bull; Trello <a href="https://trello.com/board/bostonphp-templates/4fcd5863043dd7432a18bec9">ToDo list for this presentation</a>';
-        //Document Cloud http://www.documentcloud.org/public/search/
+        $this->data['extra'][] = '&bull; <a href="http://www.documentcloud.org/public/search/">Document Cloud </a>';
+        $this->data['extra'][] = '&bull; LinkedIn Mobile APP';
         
     }
     
@@ -85,6 +87,7 @@ class Controller {
         
         $this->data['extra'] = array();
         $this->data['extra'][] = 'Mustache, with links to various language libraries: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
+        $this->data['extra'][] = 'Hogan - for even faster rendering: <a href="http://twitter.github.com/hogan.js/">http://twitter.github.com/hogan.js/</a>';
         $this->data['extra'][] = 'Backbone JS: <a href="http://backbonejs.org/">http://backbonejs.org/</a>';
         $this->data['extra'][] = 'Google WebFonts: <a href="http://www.google.com/webfonts">http://www.google.com/webfonts</a>';
         $this->data['extra'][] = 'Twitter Bootstrap <a href="http://twitter.github.com/bootstrap/index.html">http://twitter.github.com/bootstrap/index.html</a>';
@@ -174,18 +177,32 @@ class Controller {
     
     
     function advanced1() {
-        $this->template = 'title_slide';
+        $this->template = 'code_layout';
         $this->data['headline'] = 'Some more advanced';
         $this->data['subhead'] = 'You really need to add all the logic!';
         //dealing with coma separated lists lists, uls etc. has colleague
+        
+        //show 'looking up the list'
+        $colleagues = $this->colleagueData();
+        $colleagues['has_colleagues'] = true;
+        $colleagues['separator'] = ', and also';
+        $colleagues['colleagues'][ count($colleagues) -1 ]['last'] = true; //let the template know which is last
+        
+        $this->data['template_code'] = $this->getEscapedTemplate('advanced_list');
+        $this->data['template_display_code'] = $this->getTemplate('advanced_list');
+        $this->data['data'] = json_encode( $colleagues );
+        
     }
 
     function advanced2() {
         //Push State, 
         //History
-        //Ajax detecting
         $this->template = 'title_slide';
-        $this->data['mega'] = 'J';
+        $this->data['headline'] = 'History and AJAX';
+        $this->data['subhead'] = 'What about the BACK BUTTON!';
+        
+        $this->data['extra'] = array();
+        $this->data['extra'][] = '&bull; Push State';
     }
     
     function detecting() {
@@ -196,12 +213,15 @@ class Controller {
 $this->template_data[\'title\'] = $title;
 
 //Detect AJAX requests. Send just data if an ajax request!
-if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) && strtolower($_SERVER[\'HTTP_X_REQUESTED_WITH\']) == \'xmlhttprequest\') {
+if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) 
+    && strtolower($_SERVER[\'HTTP_X_REQUESTED_WITH\']) == \'xmlhttprequest\') {
     $data[\'template\'][\'name\'] = $template; //which temlate to use
     $data[\'template\'][\'title\'] = $title; 
     //etc...
     echo json_encode( $data );
 } else {
+    // NOT an AJAX request. 
+    // Render the full template as HTML
     //Render the desired template into a variable
     $this->template_data[\'content\'] = $M->render( $this->templates[ $template ], $data, $this->templates );
 
@@ -213,6 +233,20 @@ if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) && strtolower($_SERVER[\'HTTP_X_R
         
         
         //dealing with coma separated lists lists, uls etc. has colleague
+    }
+    
+    
+    function client_side() {
+        $this->template = 'js_example';
+        $this->data['headline'] = 'Send your views to the client in a Javascript File';
+        $this->data['subhead'] = '(Sanity hint: automate the generation of this file using the shell!)';
+        
+        $this->data['injected_code'] = 'var all_templates = {
+"_important_headline":"<h1>{{headline}}<\/h1>",
+"_minor_headline":"<h3>{{headline}}<\/h3>",
+"layout":"<html><head>{{{scripts}}}<\/head><body>{{{content}}}<\/body><\/html>"
+}';
+        
     }
     
     function js1() {
@@ -244,6 +278,7 @@ if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) && strtolower($_SERVER[\'HTTP_X_R
           array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),
           array('url' => 'advanced1', 'title' => 'Resources', 'data_template' => 'code_layout'),  
           array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'title_slide'),  
+          array('url' => 'client_side', 'title' => 'Client', 'data_template' => 'js_example'),  
           array('url' => 'detecting', 'title' => 'Detecting', 'data_template' => 'js_example'),  
           array('url' => 'js1', 'title' => 'AJAXing', 'data_template' => 'js_example'),  
             //Show script example of how the next/previous is working

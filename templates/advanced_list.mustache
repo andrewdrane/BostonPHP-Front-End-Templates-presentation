@@ -1,0 +1,23 @@
+<div id="user">
+    <p id="me">{{first_name}} {{last_name}}</p>
+
+    {{^has_colleagues}}
+        <p>No Colleagues!</p>
+    {{/has_colleagues}}
+    
+    {{#has_colleagues}}
+        <ul>
+    {{/has_colleagues}}
+    
+        {{#colleagues}}
+            <li class="colleague">
+                {{first_name}} {{last_name}}
+                {{^last}}{{separator}}{{/last}}
+            </li>
+        {{/colleagues}}
+        
+    {{#has_colleagues}}
+        </ul>
+    {{/has_colleagues}}
+
+</div>

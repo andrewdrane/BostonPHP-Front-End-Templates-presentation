@@ -1,5 +1,6 @@
 <script type="text/javascript">
     {{#template_code}}var code_layout_template = "{{{template_code}}}"; //make sure you have escaped the quotes{{/template_code}}
+    
     {{#data}}var code_layout_json = {{{data}}};{{/data}}
 </script>
 
@@ -19,12 +20,12 @@
         <li><a href="#data" data-toggle="tab">Data</a></li>
     </ul>
     <div class="tab-content">
-        <div class="span10 offset1 tab-pane active" id="template">
+        <div class="span12 tab-pane active" id="template">
             <pre class="html prettyprint">{{template_display_code}}</pre>
         </div>
 
-        <div class="span10 offset1 tab-pane" id="data">
-            <pre class="js">{{data}}</pre>
+        <div class="span12 tab-pane" id="data">
+            <pre class="js" id="json_data">{{data}}</pre>
         </div>
 
 

@@ -31,7 +31,7 @@ $( function(){
     
     
     prettyPrint(); //make code blocks look nice!
-    
+    formatJSON(); //make json look nice
     //get and render
     
 })
@@ -70,6 +70,8 @@ function ajaxLoad( url, template_name ){
         $('#nav').append( navHTML );
 
         prettyPrint(); //make code blocks look nice!
+        $('.prettyprint').removeClass('prettyprint');//avoid double prettyprint
+        formatJSON(); //make json look nice
     });
 
 }
@@ -87,7 +89,8 @@ function getBetween( tag, data ) {
 }
 
 function formatJSON(){
-    $('.js').html( $('.js').html().replace(/(,|\[)/g, '$1\n') );
+    if( $('#json_data').is('formatted') ) return; //avoid double formatting
+    $('#json_data').html( $('#json_data').html().replace(/(\{|\[|\])/g, '\n$1').replace(/(\])/g, '$1\n') ).addClass('formatted');
 }
 
 //load an example script into a a pretty print code block
@@ -101,6 +104,7 @@ function loadUpScript() {
         
         //run the google code hilighting
         prettyPrint();
+        $('.prettyprint').removeClass('prettyprint');//avoid double prettyprint
 
     });
 }
