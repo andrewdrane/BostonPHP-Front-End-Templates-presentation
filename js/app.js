@@ -31,7 +31,7 @@ $( function(){
     });
     
     
-    
+    prettyPrint(); //make code blocks look nice!
     
     //get and render
     
@@ -59,6 +59,8 @@ var gotten = '';
             var navHTML = Mustache.render( all_templates['_next_prev'], data['template'], all_templates);
             
             $('#nav').append( navHTML );
+            
+            prettyPrint(); //make code blocks look nice!
         });
         
     }
@@ -77,4 +79,19 @@ function getBetween( tag, data ) {
 
 function formatJSON(){
     $('.js').html( $('.js').html().replace(/(,|\[)/g, '$1\n') );
+}
+
+//load an example script into a a pretty print code block
+function loadUpScript() {
+    $.get( file_url, function( data ) {
+        //extract the part we want to see
+        var example = getBetween( file_token, data );
+
+        //update the display thing
+        $("#function_example").html( example );
+        
+        //run the google code hilighting
+        prettyPrint();
+
+    });
 }

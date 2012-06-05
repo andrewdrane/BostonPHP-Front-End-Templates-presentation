@@ -64,6 +64,19 @@ class Controller {
     }
     
     
+    function examples() {
+        $this->template = 'title_slide';
+        $this->data['headline'] = 'Real World Examples';
+        $this->data['subhead'] = 'Web apps that feel more application thatn website';
+        
+        
+        $this->data['extra'] = array();
+        $this->data['extra'][] = '&bull; Trello <a href="https://trello.com/board/bostonphp-templates/4fcd5863043dd7432a18bec9">ToDo list for this presentation</a>';
+        //Document Cloud http://www.documentcloud.org/public/search/
+        
+    }
+    
+    
     function resources() {
         $this->template = 'title_slide';
         $this->data['headline'] = 'Additional Resources';
@@ -159,9 +172,31 @@ class Controller {
         $this->data['data'] = json_encode($this->colleagueData() );
     }
     
+    
+    function advanced1() {
+        //dealing with coma separated lists lists, uls etc. has colleague
+    }
 
+    function advanced2() {
+        //Push State, 
+        //History
+    }
+    
+    function js1() {
+        $this->template = 'js_example';
+        $this->data['headline'] = 'Example loading with JSON';
+        //$this->data['subhead'] = '';
+        $this->data['file_url'] = 'js/app.js';
+        $this->data['file_token'] = '1';
+        
+        
+        //dealing with coma separated lists lists, uls etc. has colleague
+    }
 
-
+    function thanks() {
+        $this->template = 'title_slide';
+        $this->data['mega'] = 'Thank You!';
+    }
     
     //set variables etc.
     private function beforeRender(){
@@ -169,11 +204,17 @@ class Controller {
         $links = array(
           array('url' => '', 'title' => 'Home'),  
           array('url' => 'intro1', 'title' => 'Intro', 'data_template' => 'title_slide'),  
+          array('url' => 'intro2', 'title' => 'Examples', 'data_template' => 'title_slide'),  
           array('url' => 'code_basic', 'title' => 'Basic', 'data_template' => 'code_layout'),  
           array('url' => 'code_escaping', 'title' => 'Escaping', 'data_template' => 'code_layout'),  
           array('url' => 'code_lists', 'title' => 'Lists', 'data_template' => 'code_layout'),  
-          array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),  
-          array('url' => 'resources', 'title' => 'Resources', 'data_template' => 'title_slide'),  
+          array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),
+          array('url' => 'advanced1', 'title' => 'Resources', 'data_template' => 'code_layout'),  
+          array('url' => 'js1', 'title' => 'AJAXing', 'data_template' => 'js_example'),  
+            //Show script example of how the next/previous is working
+            //explain push state
+          array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'code_layout'),  
+          array('url' => 'thanks', 'title' => 'Resources', 'data_template' => 'title_slide')  
             
         );
         

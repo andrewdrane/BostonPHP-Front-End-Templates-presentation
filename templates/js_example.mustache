@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    //Get a marked section of a javascript file (usually app.js)
+    //Global Variables! Bad practice, don't do this in real production code :p
+    file_url = "{{file_url}}";
+    file_token = "{{file_token}}";
+    
+    loadUpScript();
+    
+    
+</script>
+
+{{#headline}}
+<h2>{{headline}}</h2>
+{{/headline}}
+
+{{#subhead}}
+<h4>{{subhead}}</h4>
+{{/subhead}}
+
+<div class="row">
+
+    <div class="tab-content">
+        <div class="span12" id="template">
+            <pre class="js prettyprint" id="function_example">Loading...<pre>
+        </div>
+
+    </div>
+</div>
+
