@@ -202,7 +202,8 @@ class Controller {
         $this->data['subhead'] = 'What about the BACK BUTTON!';
         
         $this->data['extra'] = array();
-        $this->data['extra'][] = '&bull; Push State';
+        $this->data['extra'][] = '&bull; Push State - HTML 5 lets you update URL and save history';
+        $this->data['extra'][] = '&bull; <a href="https://github.com/balupton/jquery-history">JS History Plugins</a>- JS library for caching hisory';
     }
     
     function detecting() {
