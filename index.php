@@ -249,7 +249,7 @@ if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\'])
         
     }
     
-    function js1() {
+    function how_this_works() {
         $this->template = 'js_example';
         $this->data['headline'] = 'Example';
         $this->data['subhead'] = 'How this presentation works';
@@ -276,14 +276,14 @@ if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\'])
           array('url' => 'code_escaping', 'title' => 'Escaping', 'data_template' => 'code_layout'),  
           array('url' => 'code_lists', 'title' => 'Lists', 'data_template' => 'code_layout'),  
           array('url' => 'code_partials', 'title' => 'Partials', 'data_template' => 'code_layout'),
-          array('url' => 'advanced1', 'title' => 'Resources', 'data_template' => 'code_layout'),  
-          array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'title_slide'),  
+          array('url' => 'advanced1', 'title' => 'Advanced Rendering', 'data_template' => 'code_layout'),  
+          array('url' => 'advanced2', 'title' => 'Advanced 2', 'data_template' => 'title_slide'),  
           array('url' => 'client_side', 'title' => 'Client', 'data_template' => 'js_example'),  
+          array('url' => 'how_this_works', 'title' => 'AJAXing', 'data_template' => 'js_example'),  
           array('url' => 'detecting', 'title' => 'Detecting', 'data_template' => 'js_example'),  
-          array('url' => 'js1', 'title' => 'AJAXing', 'data_template' => 'js_example'),  
             //Show script example of how the next/previous is working
             //explain push state
-          array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'code_layout'),  
+          //array('url' => 'advanced2', 'title' => 'Resources', 'data_template' => 'title_slide'),  
           array('url' => 'thanks', 'title' => 'Thanks', 'data_template' => 'title_slide')  
             
         );

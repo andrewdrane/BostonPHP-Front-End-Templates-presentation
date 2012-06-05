@@ -39,8 +39,9 @@ $( function(){
 var gotten = '';
 //comments that are just a number are for displaying code
 //1
-/** Load a request by AJAX. Loads the next and previous links as well
- * Render the template to the main content. Render next and previous and append to the end of the nav bar
+/** Load a request by AJAX. Loads the next and previous links too.
+ * Render the template to the main content. 
+ * Render next and previous and append to the end of the nav bar
  */
 function ajaxLoad( url, template_name ){
 
@@ -70,7 +71,6 @@ function ajaxLoad( url, template_name ){
         $('#nav').append( navHTML );
 
         prettyPrint(); //make code blocks look nice!
-        $('.prettyprint').removeClass('prettyprint');//avoid double prettyprint
         formatJSON(); //make json look nice
     });
 
@@ -88,8 +88,10 @@ function getBetween( tag, data ) {
     return data.substr( start, end );
 }
 
+//Make json look pretty
 function formatJSON(){
-    if( $('#json_data').is('formatted') ) return; //avoid double formatting
+    //first, make sure there is json_data and that it hasn't already been formatted
+    if( !$('#json_data').length || $('#json_data').is('formatted') ) return; //avoid double formatting
     $('#json_data').html( $('#json_data').html().replace(/(\{|\[|\])/g, '\n$1').replace(/(\])/g, '$1\n') ).addClass('formatted');
 }
 
@@ -104,7 +106,7 @@ function loadUpScript() {
         
         //run the google code hilighting
         prettyPrint();
-        $('.prettyprint').removeClass('prettyprint');//avoid double prettyprint
+        
 
     });
 }
