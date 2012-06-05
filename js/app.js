@@ -29,6 +29,22 @@ $( function(){
         ajaxLoad( $(this).attr('href'), $(this).attr('data-template') )
     });
     
+    // Use arrow keys easy next and previous
+    $(document).unbind('keydown').bind('keydown', function(event) {
+
+        //If the big preview is open
+        if( event.keyCode == 37 && $('#prev').length ) {
+            $('#prev a').trigger('click');
+            return false;
+        }
+        if( event.keyCode == 39 && $('#next').length ) {
+            $('#next a').trigger('click');
+            return false;
+        }
+        
+        return true; //for other keypresses, return true
+    });
+    
     
     prettyPrint(); //make code blocks look nice!
     formatJSON(); //make json look nice
