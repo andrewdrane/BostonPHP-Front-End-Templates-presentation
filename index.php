@@ -47,7 +47,7 @@ class Controller {
         $this->data['extra'] = array();
         $this->data['extra'][] = 'Featuring Mustache: <a href="http://mustache.github.com/">http://mustache.github.com/</a>';
         $this->data['extra'][] = 'Presentation code on GitHub: <a href="https://github.com/andrewdrane/BostonPHP-Front-End-Templates-presentation">https://github.com/andrewdrane/BostonPHP-Front-End-Templates-presentation</a>';
-        $this->data['extra'][] = 'Slides online: <a href="http://adrane.com">http://adrane.com</a>';
+        $this->data['extra'][] = 'Slides online: <a href="http://adrane.com/templates">http://adrane.com/templates</a>';
           
     }
     
