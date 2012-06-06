@@ -4,12 +4,6 @@
 require 'includes/mustache/Mustache.php';
 
 
-
-class Presentation {
-    
-    
-}
-
 /** Controller class
  * 
  */
@@ -67,7 +61,7 @@ class Controller {
     function examples() {
         $this->template = 'title_slide';
         $this->data['headline'] = 'Real World Examples';
-        $this->data['subhead'] = 'Web apps that feel more application thatn website';
+        $this->data['subhead'] = 'Web apps that feel more like applications then web pages';
         
         
         $this->data['extra'] = array();
@@ -204,6 +198,7 @@ class Controller {
         $this->data['extra'] = array();
         $this->data['extra'][] = '&bull; Push State - HTML 5 lets you update URL and save history';
         $this->data['extra'][] = '&bull; <a href="https://github.com/balupton/jquery-history">JS History Plugins</a>- JS library for caching hisory';
+        $this->data['extra'][] = '&bull; <a href="http://twitter.github.com/hogan.js/">Hogan js</a> even faster rendering';
     }
     
     function detecting() {
